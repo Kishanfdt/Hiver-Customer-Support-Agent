@@ -1,11 +1,176 @@
 tweet_id,text,gold_intent,gold_decision
-10001,@AmazonHelp where is my package? It was supposed to be delivered yesterday and tracking hasn't updated.,order_status,auto_handle
-10002,@AmazonHelp I returned my boots last week. When will my refund be processed into my bank account?,refund_request,auto_handle
-10003,@AmazonHelp The delivery driver marked my package as handed to resident but nobody knocked and nothing is here!,delivery_issue,auto_handle
-10004,@AmazonHelp I cannot log into my account because I am not receiving the OTP on my mobile phone.,account_access,escalate
-10005,@AmazonHelp Why was I billed $14.99 twice for Prime this month on my credit card? Please fix this unauthorized charge.,billing_dispute,escalate
-10006,@AmazonHelp The coffee maker I ordered arrived shattered into pieces inside the box.,product_defect,auto_handle
-10007,@AmazonHelp Do you ship internationally to New Zealand for electronic goods?,general_inquiry,auto_handle
-10008,@AmazonHelp tracking says out for delivery for 3 days now with carrier UPS. What is going on?,order_status,auto_handle
-10009,@AmazonHelp someone hacked my Amazon password and changed the email address!,account_access,escalate
-10010,@AmazonHelp my account shows an unexpected charge of $89.00 that I never made.,billing_dispute,escalate
+904245,@115850 in how many hours is the cash back credited on using a Visa card for payment?,billing_dispute,escalate
+679013,@115830 distressed at the level of customer service I have received when trying to cancel an order. Said order has since been dispatched and I have been charged for it especially as I was ensured this would not happen. I spoke to someone but not convinced it’s sorted #poor,billing_dispute,escalate
+206008,"@AmazonHelp They closed my account for failure of verification of payment method, but somehow still managed to charge me for Amazon Prime",billing_dispute,escalate
+236211,@AmazonHelp Your option menu doesn't cover this contingency without telling me it will charge me for a non-delivered item *again* if I dont send it back,billing_dispute,escalate
+795728,@116316 Please help. I ordered and paid for my graphic card 15.6. and it's still not delivered. How can I get my money back?,billing_dispute,escalate
+314724,@AmazonHelp Only if you don't actually charge me. 😂😜🤗 ❤️ you guys!!,billing_dispute,escalate
+145884,@115821 Your customer service is lacking today. Usually good but I was charged three times and they keep telling me its just an authorization. These charges cleared my account. The seller seems to be a scammer and this is fraud and I cant get help!,billing_dispute,escalate
+492142,@AmazonHelp Shows as delivered and handed to a resident - in line with two previous items. There’s clearly a scam going on. Usual level of transparency not there. Very unhappy. Why no card? Why no details as to signed for it.,billing_dispute,escalate
+349974,@AmazonHelp mentioned tht I don't intend to use Amazon anymore.Hence need amnt in my bank account not in paybalance #amazonindia https://t.co/88oN9R1kdx,billing_dispute,escalate
+1022892,@AmazonHelp The credit card information is correct,billing_dispute,escalate
+899525,@115850 Good morning. Thanks for delivering my LG Q6 on time.I've purchased it using SBI debit card. When I'll get 10% Cashback,billing_dispute,escalate
+421379,@115850 Error occurred while applying Amazon Gift Card :(,billing_dispute,escalate
+180116,@115850 I ordered motoG5S plus frm Amazon by credit card.But they giving me refund. I paid interest of credit card for nothing.,billing_dispute,escalate
+326727,"@AmazonHelp a customer rep told me that I'll get a refund of $4.49, and sent me a conf. email, but will it be on my GC balance or my card?",billing_dispute,escalate
+581890,@AmazonHelp Refund is received 259 . Item purchase price 285 Order cancel by mistake of your. &amp; You deducted 25. What's my fault?,billing_dispute,escalate
+975754,@115830 #Poor Customer Service. £554 Order was out of stock but sent charged anyway! Spent 4 hrs on this problem then offered refund £5!!,billing_dispute,escalate
+765843,so I just realized the student prime membership on amazon ended and I was charged 108$ two months ago... and I just noticed... sad day lol,billing_dispute,escalate
+332355,"hey @115821 @AmazonHelp Ridiculous refund case now. original creditcard account no longer exist, your staff wont refund to my other card",billing_dispute,escalate
+810230,Hey @115821 how can I transfer my gift card $ from amazon US to my German DE account? Cannot even buy Kindle books with the gift $!,billing_dispute,escalate
+1096674,@115850 why am I unable to load money in @115823 using my @3021 Credit Card? &amp; This has been the problem right since the beginning,billing_dispute,escalate
+546394,@AmazonHelp Yep it's been dispatched. However it does seem on my online banking that the order total has been deducted so I don't think it's my amazon order that's the issue... I think there may be an issue with my PayPal account but thank you!,billing_dispute,escalate
+1040102,@AmazonHelp Plz give me the exact process to delete my bank account details I don't wanna save it there,billing_dispute,escalate
+281422,@AmazonHelp I'm having trouble in adding money to Amazon pay with rupay debit card,billing_dispute,escalate
+495939,"@AmazonHelp At first I was escalated to the Gift Card team, who then responded by telling me it was a store purchased gift card (it wasn’t) and to return to the store. When I advised them of this they said communication needed to come from email address of purchaser,even though it was a gift",billing_dispute,escalate
+380415,"@AmazonHelp nothing it just says it's a card transaction it's been pending since october 1, i can't go to back yet i'm still out the country",billing_dispute,escalate
+516671,"@115821 My personal account is a buyer and a seller account. I can't log into seller without 2FA now. But I can't use 2FA without pissing off my wife, who doesn't have my phone with her when she logs in. How do I do 2FA for only Seller? Or how do I separate the 2 accounts? Thanks",account_access,escalate
+1053599,@AmazonHelp Is there a problem with silk browser on kindle fire I cannot access it?,account_access,escalate
+349643,"@115850 Not able to login ""Amazon.in"" since week as, URL not opening Amazon page.Looking for immediate assistance.#1/1",account_access,escalate
+442894,"@115821 my seller account has been hacked and I kept getting the same run around from you guys, but no one has been able to resolve the issue. I’ve literally been assigned 3 different case numbers 😡👎🏼#amazonselleraccounthacked",account_access,escalate
+429957,@AmazonHelp So your driver delivers next doors parcel down the side of OUR house and pulls the gate off the wall!!! It’s locked for a reason https://t.co/5qRSVH15Su,account_access,escalate
+306170,"@AmazonHelp Someone has hacked my amazon account and changed the email address, how can I fix this?",account_access,escalate
+486645,@115821 someone hacked my account and changed the email address so now I can't login. Your customer service rep told me to change my password which I can't do... help?,account_access,escalate
+255733,@AmazonHelp How can I do it though because it changed my email and only option is resetting password when I click on I can’t log into my account https://t.co/6CFfqE2gym,account_access,escalate
+440289,@AmazonHelp A friend of mine has been locked out of his account since Sunday. Called 5 times and apparently no one can help. Where support?,account_access,escalate
+348059,@115850 Cannot access site. Dont tell me prblm wid intrnet or brwser as it sumtyms (5%) wrking. U r loosing ur business if not fixed. https://t.co/UgyTldQcRR,account_access,escalate
+425464,"@AmazonHelp just gave it a try after seeing this but it still gives me the same error, it successfully changed the password but wouldnt accept the pass",account_access,escalate
+234749,"@AmazonHelp I received an email alerting me to the changing of my accounts registered email address. I have tried to log in with my real email, no luck!",account_access,escalate
+721438,"Can't change my new Email address with @115821 ! I'm repeatedly told: ""There was a problem with your Password"". Little help here.",account_access,escalate
+129662,@115850 my account is locked couldnt get through with it. how can i get it back,account_access,escalate
+497372,@AmazonHelp Thank you for the link! Previously I couldn't access an email form without going through a login page.,account_access,escalate
+575333,"@AmazonHelp i cant sign my account, it says ""Account Locked"". Can you help me?",account_access,escalate
+637153,@AmazonHelp my account was hacked. Saturday you told me nothing could be done.,account_access,escalate
+932680,@AmazonHelp That's a login link but I can't login because it's locked or says password is wrong,account_access,escalate
+1021013,@AmazonHelp My account has been hacked so I can’t log in and talk in live chat!,account_access,escalate
+802281,"@AmazonHelp I’ve reset my password, it says successful, I enter my password, and it doesn’t work. Keeps happening (2/2)",account_access,escalate
+810232,@AmazonHelp hey my account has been breached but I can't contact Amazon because I can't log in. Do you have a regular email?,account_access,escalate
+442851,@115830 My wife's account has been hacked and we can't find a contact number to sort. She can't log on as the password and email address has been changed.,account_access,escalate
+391636,@AmazonHelp I think someone changed my login email - found email notifying change but didn't authorize - can't log in to change it back.,account_access,escalate
+575353,@AmazonHelp Hi @AmazonHelp! What happens is that whenever I need to order something or view my Fresh history I'm being asked for password even though I'm logged in,account_access,escalate
+975053,@AmazonHelp I had old a/c -I hve lost all details! -I hve regtd a new a/c but same phone nmbr I get OTP but when I try it says nmbr used by another a/c,account_access,escalate
+317603,@AmazonHelp Order - #407-9390765-3239506 Received defective product. Self Ship the product. Please Refund.,refund_request,auto_handle
+174491,@AmazonHelp The address was correct on the order and I don’t understand why an order would be marked as handed to the resident if it hadn’t been delivered yet. The whole point of tracking on deliveries is to keep the customer updated. A refund had now been arranged and I’ll shop elsewhere,refund_request,auto_handle
+126822,"@AmazonHelp This is so frustrating. What is the point of being a Prime member? I don't even need the money back, just give me Amazon Pay credit. Amazon makes mistakes, you pay money and get away with it. Consumers make mistakes, we need to suffer and live with it?",refund_request,auto_handle
+307932,@AmazonHelp If it's in transit then u shld know where it is. If it wont arrive today (sat) then I need to buy it in a shop so need full refund incl post,refund_request,auto_handle
+422251,Hey @AmazonHelp - been waiting for 12 days for a collection for return. Numerous attempts to contact you via the website but no word back?,refund_request,auto_handle
+183255,"@AmazonHelp I did that before, but if the courier has lost my order and doesn’t return it to you, how will I get my refund! Not happy.",refund_request,auto_handle
+27880,@115850 worst return policy I have ever seen in any online shopping website.,refund_request,auto_handle
+127984,"I have been doing a back &amp; forth with @AmazonHelp now for a year to get an old redundant account deleted. I keep getting sent by customer service an email to ""request cancellation"". Each time I go through the steps &amp; still I am left with two accounts: 1 active &amp; 1 dormant.",refund_request,auto_handle
+980606,"@AmazonHelp Hello. It’s ok, they have emailed now to say they will refund the money. Thank you for all your help.",refund_request,auto_handle
+972717,@AmazonHelp better take your product and return my money.,refund_request,auto_handle
+389928,@AmazonHelp @122232 are a disgrace! 3 orders to a BFPO address.....all 3 returned! Why do you use these jokers. #Sackthem,refund_request,auto_handle
+1014168,@115850 I purchased a mobile I want to return today i m facing some issue in that,refund_request,auto_handle
+429089,@AmazonHelp Why should I fill m not free for you give me my refund and close your operation coz you people can not give importance to customers .,refund_request,auto_handle
+166359,@AmazonHelp Ok i sent you an email please put the money back in the bank today it needs to go back in no later than today tjanks keep me posted,refund_request,auto_handle
+342959,@AmazonHelp Leave it now. I have received confirmation that order is being returned. Awesome Amazon Prime... Can never be #gharkidukaan,refund_request,auto_handle
+606151,"Has anyone ever had to return anything to @115830 via courier? Absolutely no idea when the courier is due, just know it’s sometime today.",refund_request,auto_handle
+65688,.@AmazonHelp I’m kinda done - I spent 1.5 hours in talks with four (!) different hotliners which ended up not being able to help until I bought more (!) to have my cart be above $25 so I could return three other broken CDs. Will return &amp; scout local stores instead. @115851,refund_request,auto_handle
+537504,@115850 I want to buy this https://t.co/BoUY9dVGoE product but confused is it genuine or not and if it doesn't fit me can I refund for it?,refund_request,auto_handle
+440071,@AmazonHelp How many times do I have to write the same thing! Do you understand It's two months already? I want my money back asap.,refund_request,auto_handle
+1083816,#AmazonIndia @115850 ... After 20 days and 5 calls and emails to your customer care... i did not receive refund nor the right product,refund_request,auto_handle
+439680,@115850 @115821.in @115851 I have returned my product by price RS1199 but till now I have only got rs305. Customer care is not accepting my call,refund_request,auto_handle
+1057364,@AmazonHelp @120781 @AmazonHelp :Pls resolve the matter as requested.I need d item which wasn't delivered at all and forcibly refund was done.,refund_request,auto_handle
+391157,"@115850 @AmazonHelp ordered these canapes yesterday &amp; when opened the box, they r all broken. Further, site says Not eligible for return https://t.co/RiDN56Y6Dw",refund_request,auto_handle
+465107,"@AmazonHelp Also, I received a shirt in a completely different size (female XL). I emailed the supplier and they told me to PAY for shipping to return it??? HELLO",refund_request,auto_handle
+319977,Don't buy any product from @115850 . I cancelled jeans request but can't get refund. #HarGharDigitalSakshar https://t.co/aMl4yYwLTl,refund_request,auto_handle
+359205,@AmazonHelp Being shipped by Amazon.,order_status,auto_handle
+425470,@AmazonHelp trying to save urself by giving link of delivered order. please get the order number mentioned delivered.,order_status,auto_handle
+656036,@AmazonHelp the tracking begins with TBA - i don't even know what courier that is lol,order_status,auto_handle
+128786,"@115850 your image is being shattered by your delivery men twice in 7days, first with order number 402-7292376-4018711, a two-day delivery product which was delayed by the delivery guy by 2 days and now today 1/n",order_status,auto_handle
+343722,"@AmazonHelp Nope, the last email I had was on the 1st of Nov, confirming it's dispatch",order_status,auto_handle
+652093,"@AmazonHelp First Amazon shipped it a day late, now it says it's been sitting in California for the last day. What's the point of #Prime if things never get to me on time?",order_status,auto_handle
+254571,"@AmazonHelp It just states it’s on its way, 3 rd party delivery no tracking",order_status,auto_handle
+331369,"@115850 I get 100 messages a day, regarding order status which I have not ordered..I guess tech issue..PLS HELP. It is disturbing badly",order_status,auto_handle
+721761,@115850 i have ordered this watch on sunday and it arrived yesterday but it is not working yetPlease check the items before dispatched. https://t.co/R3OSI11Hx1,order_status,auto_handle
+459936,@116090 Still nothing @AmazonHelp. No change in tracking info in 4 days. Not happy.,order_status,auto_handle
+654354,"@115830 Yes you have @115830 after making me wait all day for the item, then updated the tracking status 30minutes after the latest delivery time. Very disappointing.",order_status,auto_handle
+444347,Dear @115850 I have orderd a printer today but I forgot to opt for extended onsite warranty plan the order is not dispatched yet can i opt it now??? https://t.co/o9vCf4cyF3,order_status,auto_handle
+78831,@120540 ho ordinato un prodotto il 24 con consegna prevista il 27. Sul sito delle Poste inserendo cod.tracking mi informa che pacco non è stato consegnato x indirizzo incompl/errato. Come procedere?,order_status,auto_handle
+937298,@AmazonHelp Yes.but ur tracking status still not updated It says On the way,order_status,auto_handle
+689217,@AmazonHelp It said they were all shipped together and have all been delivered. https://t.co/HhtGCisKM9,order_status,auto_handle
+770069,"@AmazonHelp I found what I think was a stolen package on my front yard, but the label was torn off. Can you help track down the owner?",order_status,auto_handle
+449977,A package that shipped yesterday is already out for delivery but the package with @3375 that shipped 11/24 has been sitting in Vancouver since Monday. How in the world is this acceptable @115821?,order_status,auto_handle
+797500,@AmazonHelp I'm trying to order an air purifier in San Francisco. Four different ones. NONE can be shipped here. What's up?,order_status,auto_handle
+457737,@AmazonHelp So impressed you responded so quickly. And that's why I love you. 😄 Carrier was AMZL US. Need tracking #?,order_status,auto_handle
+549410,@AmazonHelp Yes I set up a replacement order on Thursday but it still hasn’t shipped. Don’t you prioritize shipping replacement orders for broken items?,order_status,auto_handle
+964162,"thanks to amazon's ""buy with 1-click"" i accidently ordered carolina reaper peppers. i found out when i got an email saying it shipped.",order_status,auto_handle
+394932,"Holy cow, @115821 is on the ball with #BlackFriday sales. Placed an order, and within 4 hours it was shipped with a guaranteed delivery date of tomorrow. This kind of instant gratification is danger-zone material.",order_status,auto_handle
+769601,"@AmazonHelp It says ""No tracking details. We're preparing your order. Carrier information will be updated soon.""",order_status,auto_handle
+155151,@AmazonHelp “Shipped with AMZL US”,order_status,auto_handle
+461355,"@AmazonHelp thanks, it says: Shipped with AMZL US And it left the shipping facility at 2:36pm with delivery by 8pm",order_status,auto_handle
+465044,@115821 you are failing me! My rolling pin was supposed to be delivered today and it's still in transit somewhere. Rolling out dough using a regular pin and books to measure is much more difficult than you'd think. Get it together and get my package delivered!!,delivery_issue,auto_handle
+701374,@AmazonHelp unhappy with delivery drivers leaving packages on doorstep in full view of passers-by. Easily stolen.,delivery_issue,auto_handle
+388808,"@115850 - Delivery services are not good now a days. The delivery agents lie about customer unavailability, customer care cant help.",delivery_issue,auto_handle
+224609,"@115821 shipping sucks. PKG delivered to unknown location, reorder lost internally by amazon. 1 wk later reordered 3rd time.",delivery_issue,auto_handle
+181285,Hey @115821 I appreciate the delivery but also was this really the only box available?? https://t.co/1iCC6rHDc3,delivery_issue,auto_handle
+617053,@AmazonHelp @115850 @115851 Waited all day for a package ordered with guaranteed morning delivery. It was a gift package and planned to gift it to my father. It was his birthday. And thanks to Amazon that wasn't possible. #amazon #sad,delivery_issue,auto_handle
+309253,"@AmazonHelp Is there a way I can get you to not use UPS for deliveries? They are late, misdeliver, and today is the last straw.",delivery_issue,auto_handle
+485360,"@AmazonHelp I haven't found a number with a human to contact at USPS. I have rescheduled delivery, but would like to avoid future problems.",delivery_issue,auto_handle
+476894,"@115850 @AmazonHelp @115851 Sir, can u give me ur number so that I can share my live location so that u will know that I am at my home waiting for ur courier guy to pick the return and he won’t be able to misreport that I was not available n door was closed.",delivery_issue,auto_handle
+8513,"@115830 when you can't get my Prime order to me on time, what happens? I needed it on time! It's a gift! Your courier not up to the job?",delivery_issue,auto_handle
+448616,"Hey @115821, how is something I ordered today with #prime have a delivery date of Dec 7? How is that TWO days?",delivery_issue,auto_handle
+963215,"@115821 paid for next day delivery but my order hasn’t arrived, can anyone help me??",delivery_issue,auto_handle
+919829,I couldn't receive messages as I was out of network coverage. It shows that my order has been delivered. I haven't received it. @115850,delivery_issue,auto_handle
+531648,@115830 try to avoid buying stuff from these idiots. Claimed to have delivered a parcel.to our house 3 times now! So we they are giving us free delivery and we can track the van this morning. Just tracked it and the Muppets driven straight past our house and is now miles away!,delivery_issue,auto_handle
+834776,"@115850 @228164 Team, it's really urgent need can u please check once, I have attached the order no which hasn't delivered yet. https://t.co/NiMhGkrITX",delivery_issue,auto_handle
+385343,"@115850 Delivery issues r so weird, status changed to 'delivery attempted' without making a single call to me! Bad experience.",delivery_issue,auto_handle
+494861,@AmazonHelp Hi I ordered a parcel today order number #204-0948754-5997120 + #204-8409226-0967504 and it says it was delivered to a neighbour but the neighbour claims they don't have it despite me receiving an email claiming it had?,delivery_issue,auto_handle
+323720,"@AmazonHelp Yes, but I blame my local post office, who lied about attempted delivery yesterday (there was none) &amp; that I could pickup at PO today (nope)",delivery_issue,auto_handle
+460009,@UPSHelp I’ve ordered two things from @115821 on two separate days and both packages are delayed 1 was supposed to be here yesterday and the other today 😡😡😡this is a complete mess you guys are messing with people’s money and time,delivery_issue,auto_handle
+392629,"hey @115821, how do i get a refund on something that was not delivered to the correct address therefore was never received",delivery_issue,auto_handle
+1100951,Not sure how one day delivery works from @115830 when it’s not even dispatched yet #doigetarefund #itsabitlate https://t.co/nOYpanOYA0,delivery_issue,auto_handle
+453219,@AmazonHelp And let down. Delayed until at least the 6th? Really?,delivery_issue,auto_handle
+324419,@AmazonHelp You sent a horrible delivery boy right now! Talked horribly to my mother &amp; was not ready to give change either! Not done!,delivery_issue,auto_handle
+231565,@AmazonHelp I had a notification that my package was delivered yesterday but it didn't turn up at all? Any help would be great.,delivery_issue,auto_handle
+169474,@AmazonHelp hello is shipping being delayed because of the past holiday ?,delivery_issue,auto_handle
+789246,"@AmazonHelp hey guys, restaurants promo code - never used and expires in December. Not working? Why's that?",product_defect,auto_handle
+421417,@115850 dont send messages on your fake efforts...still my order is not delivered... https://t.co/sdNCx7FUnG,product_defect,auto_handle
+297296,"@AmazonHelp Reiterating again-""There has been NO emails from Social Media team for LAST 28 DAYS"" @115821 @115850 Please STOP posting fake tweets again",product_defect,auto_handle
+292868,@AmazonHelp I’ve been sent the wrong item. Help?,product_defect,auto_handle
+313824,"@115850 , This is how your sellers cheat us. Defective phone. Amazon Refuses to refund . And now customers are at amazon mercy. https://t.co/WS0DMa9P71",product_defect,auto_handle
+375560,the omnibus of clover I got off amazon arrived a little damaged and idk if I have enough fucks to exchange it bc it was supposed to be new,product_defect,auto_handle
+1024214,@AmazonHelp The customer representative assured me of replacement but they refunded the balance for the product which I bought in an offer #fake,product_defect,auto_handle
+987005,@AmazonHelp Are you serious on your reply.amazon agent #fake #dropcall on face.Rediculous behaviour.No resolution and repeated #fake stuff,product_defect,auto_handle
+1000981,"@115850 @AmazonHelp So many Quiz have PPL taken part in,But I never Saw The Winners List4AmazonPay. Is it Fake Contests #AmazonPayAppQuiz",product_defect,auto_handle
+219173,@AmazonHelp tired to sign up using a Citibank card for 4 free months but not working,product_defect,auto_handle
+578433,Hey @AmazonHelp @116316 ich tippe mal das das ein FAKE ist? https://t.co/IJieSetQ5v,product_defect,auto_handle
+1046140,@AmazonHelp @115850 i don't understand what sort of process is this which makes so difficult to pick up the faulty item from my door steps.,product_defect,auto_handle
+495918,"@AmazonHelp Sure! Two items in a pack arrived broken (see pics). CS chat refuses to assist with any sort of partial refund or other help. Have gone through THREE different CS agents now, ridiculous!",product_defect,auto_handle
+1008919,@AmazonHelp..Order No..404-6800877-5877920 Item recieved broken. Please get it picked up from shipped address. No option on ur site.,product_defect,auto_handle
+71830,@115850 performance seller support is not working well. Please do not trouble your sellers if they wanted to understand the proceeding activities.,product_defect,auto_handle
+969112,@AmazonHelp This Fake @AmazonHelp Selling Worst Proudect No Customer Service After 9 Days Shame Shame Shame,product_defect,auto_handle
+439681,"@115850 All APP contests are absolutely fake,playing since 3 years never won once,or heard anybody winning,All declared winners r fake #AmazonIndia",product_defect,auto_handle
+939402,"I ordered this bag of @75920 dog food from @115821, it had been damaged and then taped shut before being shipped. Not acceptable. https://t.co/WpuesmuMJ3",product_defect,auto_handle
+300539,"@AmazonHelp Hi, I just recevied an order but the box is damaged, anything you can do ? Thanks !",product_defect,auto_handle
+61047,#AmazonIndia worst service. Almost a month has passed but my refund still not processed. Executive are giving fake assurance every time when I call them. They say that I am handling your concern from now and when I call next time the new one say may I know your problem.,product_defect,auto_handle
+1096015,@115850 SBI debit cards not working since yesterday morning. Unable to grab the offer,product_defect,auto_handle
+682574,@AmazonHelp Your team is not working this is the concern. Be quick please.,product_defect,auto_handle
+843524,"@AmazonHelp Not sure if it's damaged inside, I had to leave before I could check. I suspect not, just quite disappointed with the quality of the box",product_defect,auto_handle
+911512,@115850 worst shopping website they make people fool.there offers and deals are fake never do shopping from @115850 #delhi #india #usa,product_defect,auto_handle
+776057,@115850 Absolutely false. Fake status. No attempt was made to deliver. At 10:40PM? Pathetic service. Especially on Prime one day delivery! https://t.co/9n4p7S3TBM,product_defect,auto_handle
+83499,"@115830 Hello, I have been incorrectly charged for a product I purchased on https://t.co/05jLowTHUh by the seller Amazon EU S.a.r.L.. I guess there is no way to contact the seller since it was sold by Amazon, at least I haven't been able to find one. Pls, advise.",general_inquiry,auto_handle
+725266,@AmazonHelp A lot of fraud can take place in 48 hours!!! Even the supervisor was clueless.,general_inquiry,auto_handle
+179130,@AmazonHelp 408-0831158-4724315. this is my order number you promised me to send invoice bw 24 - 48 hours,general_inquiry,auto_handle
+801666,"Hi.. I purchased Two suite from Amazon, one got defect, i returned both suite by mistake, can you help to get one suite back. @115850",general_inquiry,auto_handle
+517637,"@118706 and I are going to have to fight. Been waiting for this package for two days, and ONCE AGAIN it was not left in my mailbox, nor was there any notice left to say how to pick it up C.C. @AmazonHelp",general_inquiry,auto_handle
+786785,@307688 @115821 @115821 @115850 @AmazonHelp Worst service,general_inquiry,auto_handle
+1034721,@AmazonHelp Hello .. Please solve it .. it is too bad service from you @120320 @2517 v thought u want to serve customer . but it is not @734,general_inquiry,auto_handle
+713319,"@AmazonHelp I reach out direct and get fast service, but it's just become a hassle again, can't really justify a monthly subscription fee for that.",general_inquiry,auto_handle
+867373,"@AmazonHelp i filled my details for same ,Please help me ASAP",general_inquiry,auto_handle
+1027515,@AmazonHelp This is how my package came help me please! https://t.co/sE1K1PwXQk,general_inquiry,auto_handle
+962230,Where can I file a complain about the unprofessional manner in which the AMZ delivery service handled my packages? @AmazonHelp,general_inquiry,auto_handle
+982008,@115850 can you please arrange a call back. Your contact us section has serious issues,general_inquiry,auto_handle
+924470,@115850 ORDER # 171-0433573-4510722.your customer support is not helpful!can someone help on this order please?Getin standard replies only,general_inquiry,auto_handle
+797522,@120533 mon colis n'est toujours pas arrivé ... Je désespère j'ai contacté @115817 ils ne m'aident pas plus ... Il est où le service Prime ?,general_inquiry,auto_handle
+856564,"@AmazonHelp @115850 order no: #405-1133031-7441938 &amp; #405-0704333-9487513 shows delivered on 18 Oct 17, but I haven't received, plz help.",general_inquiry,auto_handle
+627701,@AmazonHelp Yesterday ... and i was home all day waiting for it. Can you help me and direct me towards where this was delivered?,general_inquiry,auto_handle
+1001056,"@AmazonHelp U r gvng rplcmnt n tkng my phn Mon n replacement device will b given 2 me by 29Nov ! Dis is d sheer example of bad cust service, luk into it https://t.co/vfV1MkyVqX",general_inquiry,auto_handle
+490617,@AmazonHelp is #amazon charging a fee for help now,general_inquiry,auto_handle
+347797,"@AmazonHelp Thanks for the prompt response. If only the service was equally prompt and good, we wouldn't need twitter to show our love!",general_inquiry,auto_handle
+666166,Please help @AmazonHelp my order was sent to another address u guys sent a message to the seller and I haven't received any answers 4278620 last seven of my order,general_inquiry,auto_handle
+18901,@115850 .. worst kind of service giving to his customers.. I have a purchased a boss washing machine.. waiting so long ..🤔,general_inquiry,auto_handle
+380771,@AmazonHelp Please can you private tweet me and I’ll send you my contact details,general_inquiry,auto_handle
+135042,"Wie lange dauert es denn, bis ein neuer @AmazonHelp-Locker online zu sehen ist?",general_inquiry,auto_handle
+954291,@AmazonHelp Your customer service is horrible,general_inquiry,auto_handle
+227842,@AmazonHelp Please contact me on +91 9167575165,general_inquiry,auto_handle

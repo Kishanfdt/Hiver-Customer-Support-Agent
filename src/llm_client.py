@@ -55,7 +55,7 @@ class LLMClient:
         else:
             logger.info("GOOGLE_API_KEY not set. Running in deterministic offline stub mode.")
 
-    def complete_json(self, system: str, user: str, max_tokens: int = 500, max_retries: int = 3) -> Dict[str, Any]:
+    def complete_json(self, system: str, user: str, max_tokens: int = 500, max_retries: int = 1) -> Dict[str, Any]:
         """
         Calls Gemini with system instructions and user prompt, returning parsed JSON dictionary.
         Returns {"_offline_stub": True} if running offline.
@@ -93,20 +93,18 @@ class LLMClient:
     @staticmethod
     def _clean_and_parse_json(text: str) -> Dict[str, Any]:
         """Strip markdown code fences and parse JSON payload."""
-        cleaned = text.strip()
-        # Remove ```json ... ``` code fences
-        cleaned = re.sub(r"^```(?:json)?\s*", "", cleaned, flags=re.IGNORECASE)
-        cleaned = re.sub(r"\s*```$", "", cleaned)
-        cleaned = cleaned.strip()
+        cleaned = re.sub(r"```(?:json)?", "", text, flags=re.IGNORECASE)
+        cleaned = re.sub(r"```", "", cleaned).strip()
 
         try:
             return json.loads(cleaned)
         except json.JSONDecodeError:
-            # Fallback: attempt to find the first balanced JSON object in the text
-            match = re.search(r"(\{.*\})", cleaned, flags=re.DOTALL)
-            if match:
+            # Fallback: find the substring between first { and last }
+            start = cleaned.find("{")
+            end = cleaned.rfind("}")
+            if start != -1 and end != -1 and end > start:
                 try:
-                    return json.loads(match.group(1))
+                    return json.loads(cleaned[start:end+1])
                 except json.JSONDecodeError:
                     pass
             logger.warning(f"Could not parse valid JSON from text: {text[:100]}...")

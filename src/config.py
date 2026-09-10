@@ -34,9 +34,9 @@ RETRIEVAL_SIMILARITY_FLOOR: float = 0.15       # Minimum cosine similarity to re
 TOP_K_RETRIEVAL: int = 3                       # Number of resolution precedents to retrieve
 
 # Gemini LLM models
-CLASSIFIER_MODEL: str = "gemini-3.6-flash"
-GENERATION_MODEL: str = "gemini-3.6-flash"
-JUDGE_MODEL: str = "gemini-3.6-flash"
+CLASSIFIER_MODEL: str = "gemini-3.5-flash-lite"
+GENERATION_MODEL: str = "gemini-3.5-flash-lite"
+JUDGE_MODEL: str = "gemini-3.5-flash-lite"
 
 # Character limit for public social media replies
 MAX_REPLY_CHARS: int = 280

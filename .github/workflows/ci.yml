@@ -1,0 +1,39 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test-and-verify:
+    name: Build, Test & Smoke Verification
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run offline unit tests
+        run: |
+          pytest tests/test_pipeline.py -v
+
+      - name: Smoke test end-to-end pipeline (offline mode)
+        run: |
+          python -m src.pipeline --input data/amazonhelp_raw.csv --output outputs/pipeline_output.csv --max-rows 20
+
+      - name: Smoke test benchmark evaluation harness
+        run: |
+          python -m eval.run_eval --golden eval/golden_set.csv --corpus data/amazonhelp_raw.csv --output outputs/eval_report.json --max-judge-samples 5

@@ -11,7 +11,7 @@ import argparse
 import json
 import logging
 from pathlib import Path
-from typing import Any, Dict, List, Set
+from typing import Any, Dict, List, Optional, Set
 import pandas as pd
 
 from eval.baselines import simple_baseline, trivial_baseline
@@ -33,7 +33,10 @@ def run_evaluation(
     golden_path: str = "eval/golden_set.csv",
     corpus_path: str = "data/amazonhelp_raw.csv",
     output_path: str = "outputs/eval_report.json",
-    brand: str = config.BRAND
+    brand: str = config.BRAND,
+    max_judge_samples: int = 20,
+    max_samples: Optional[int] = None,
+    offline: bool = False
 ) -> Dict[str, Any]:
     """
     Executes comparative evaluation across baselines and live agent.
@@ -43,6 +46,10 @@ def run_evaluation(
 
     if "tweet_id" not in golden_df.columns:
         golden_df["tweet_id"] = [f"gold_{i}" for i in range(len(golden_df))]
+
+    if max_samples and len(golden_df) > max_samples:
+        logger.info(f"Subsampling benchmark to {max_samples} items for rapid evaluation...")
+        golden_df = golden_df.head(max_samples)
 
     golden_ids: Set[str] = set(golden_df["tweet_id"].astype(str).tolist())
     logger.info(f"Loaded {len(golden_df)} golden evaluation items. Golden IDs count: {len(golden_ids)}")
@@ -61,6 +68,11 @@ def run_evaluation(
 
     # Initialize live agent components
     llm_client = LLMClient(model=config.CLASSIFIER_MODEL)
+    if offline:
+        logger.info("Running evaluation in deterministic offline mode.")
+        llm_client.is_offline = True
+        llm_client.client = None
+
     classifier = IntentClassifier(llm_client)
     generator = ReplyGenerator(llm_client)
     judge = ReplyJudge(llm_client)
@@ -95,16 +107,22 @@ def run_evaluation(
         precedents = retriever.top_k(text, k=config.TOP_K_RETRIEVAL, exclude_ids=golden_ids)
         top_sim = precedents[0]["similarity"] if precedents else 0.0
 
-        reply = generator.generate(text, intent=intent, precedents=precedents)
+        # Live generation & judging on representative sample to stay within free-tier limits (< 2 min total runtime)
+        if idx < max_judge_samples:
+            reply = generator.generate(text, intent=intent, precedents=precedents)
+            j_eval = judge.evaluate(customer_tweet=text, generated_reply=reply, precedents=precedents)
+            judge_results.append(j_eval)
+        else:
+            reply = generator._fallback_reply(intent, precedents)
+
         gate_res = decide(intent=intent, confidence=conf, top_similarity=top_sim)
 
         agent_intents.append(intent)
         agent_decisions.append(gate_res["decision"])
         agent_replies.append(reply)
 
-        # Judge agent reply
-        j_eval = judge.evaluate(customer_tweet=text, generated_reply=reply, precedents=precedents)
-        judge_results.append(j_eval)
+        if (idx + 1) % 25 == 0 or (idx + 1) == len(golden_df):
+            logger.info(f"Evaluated {idx + 1}/{len(golden_df)} benchmark samples...")
 
     # Compute metrics
     trivial_intent_m = intent_metrics(y_gold_intent, trivial_intents)
@@ -191,13 +209,19 @@ def main():
     parser.add_argument("--corpus", "-c", type=str, default="data/amazonhelp_raw.csv", help="Path to raw corpus CSV")
     parser.add_argument("--output", "-o", type=str, default="outputs/eval_report.json", help="Path for JSON output")
     parser.add_argument("--brand", "-b", type=str, default=config.BRAND, help="Brand identifier")
+    parser.add_argument("--max-judge-samples", "-j", type=int, default=20, help="Number of samples to evaluate with LLM judge (default: 20)")
+    parser.add_argument("--max-samples", "-m", type=int, default=None, help="Cap total golden set evaluation items (default: all)")
+    parser.add_argument("--offline", action="store_true", help="Run evaluation strictly with deterministic offline stubs (zero API calls)")
     args = parser.parse_args()
 
     run_evaluation(
         golden_path=args.golden,
         corpus_path=args.corpus,
         output_path=args.output,
-        brand=args.brand
+        brand=args.brand,
+        max_judge_samples=args.max_judge_samples,
+        max_samples=args.max_samples,
+        offline=args.offline
     )
 
 
