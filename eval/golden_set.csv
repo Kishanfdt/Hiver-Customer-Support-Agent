@@ -1,0 +1,11 @@
+tweet_id,text,gold_intent,gold_decision
+10001,@AmazonHelp where is my package? It was supposed to be delivered yesterday and tracking hasn't updated.,order_status,auto_handle
+10002,@AmazonHelp I returned my boots last week. When will my refund be processed into my bank account?,refund_request,auto_handle
+10003,@AmazonHelp The delivery driver marked my package as handed to resident but nobody knocked and nothing is here!,delivery_issue,auto_handle
+10004,@AmazonHelp I cannot log into my account because I am not receiving the OTP on my mobile phone.,account_access,escalate
+10005,@AmazonHelp Why was I billed $14.99 twice for Prime this month on my credit card? Please fix this unauthorized charge.,billing_dispute,escalate
+10006,@AmazonHelp The coffee maker I ordered arrived shattered into pieces inside the box.,product_defect,auto_handle
+10007,@AmazonHelp Do you ship internationally to New Zealand for electronic goods?,general_inquiry,auto_handle
+10008,@AmazonHelp tracking says out for delivery for 3 days now with carrier UPS. What is going on?,order_status,auto_handle
+10009,@AmazonHelp someone hacked my Amazon password and changed the email address!,account_access,escalate
+10010,@AmazonHelp my account shows an unexpected charge of $89.00 that I never made.,billing_dispute,escalate

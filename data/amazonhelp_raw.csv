@@ -1,0 +1,29 @@
+tweet_id,author_id,inbound,created_at,text,response_tweet_id,in_response_to_tweet_id
+101,115712,True,2017-10-31 10:00:00,@AmazonHelp where is my order 112-3847291? It was supposed to be delivered yesterday.,102,
+102,AmazonHelp,False,2017-10-31 10:05:00,@115712 We would be happy to check your tracking details. Please DM us your order number and full name: amzn.to/help,103,101
+103,115713,True,2017-10-31 10:10:00,@AmazonHelp I sent the return for order 113-9928172 last week. When will my refund show up?,104,
+104,AmazonHelp,False,2017-10-31 10:15:00,@115713 Refunds typically take 3-5 business days once processed by our fulfillment center. Reach out via DM if you need further help.,,103
+105,115714,True,2017-10-31 10:20:00,@AmazonHelp Tracking says package delivered handed to resident but I was at work and nothing is on my porch!,106,
+106,AmazonHelp,False,2017-10-31 10:25:00,@115714 We are sorry to hear this! Please check with neighbors or building management and DM us your order details if still missing.,,105
+107,115715,True,2017-10-31 10:30:00,@AmazonHelp I am completely locked out of my account and cannot reset my password because the phone number is old.,108,
+108,AmazonHelp,False,2017-10-31 10:35:00,@115715 For account security we cannot verify details on Twitter. Please contact our account recovery specialists at amazon.com/help.,,107
+109,115716,True,2017-10-31 10:40:00,@AmazonHelp Why did Amazon charge my card $14.99 twice for Prime subscription? Please refund this unauthorized charge.,110,
+110,AmazonHelp,False,2017-10-31 10:45:00,@115716 We understand your concern regarding charges. Please log in securely to review your billing history at amzn.to/manage.,,109
+111,115717,True,2017-10-31 10:50:00,@AmazonHelp My air fryer arrived with a shattered glass basket. The box was heavily dented.,112,
+112,AmazonHelp,False,2017-10-31 10:55:00,@115717 We apologize for the damaged item! You can request a replacement or return directly via Your Orders: amzn.to/returns.,,111
+113,115718,True,2017-10-31 11:00:00,@AmazonHelp Do you provide gift wrapping options for orders shipped from third party marketplace sellers?,114,
+114,AmazonHelp,False,2017-10-31 11:05:00,@115718 Gift wrap availability depends on the individual seller. Look for the Gift options checkbox at checkout.,,113
+115,115719,True,2017-10-31 11:10:00,@AmazonHelp tracking number 938472910 has not updated in 4 days with USPS. Can you look into this?,116,
+116,AmazonHelp,False,2017-10-31 11:15:00,@115719 We would like to check on this shipment. Please DM us your 17-digit order number so we can investigate.,,115
+117,115720,True,2017-10-31 11:20:00,@AmazonHelp returned a defective laptop 10 days ago. Tracking shows delivered to warehouse but no refund yet.,118,
+118,AmazonHelp,False,2017-10-31 11:25:00,@115720 Please allow 3-5 business days after warehouse receipt for the refund to reflect. Send us a DM to verify.,,117
+119,115721,True,2017-10-31 11:30:00,@AmazonHelp driver left my package out in the heavy rain and the electronics are soaked and ruined.,120,
+120,AmazonHelp,False,2017-10-31 11:35:00,@115721 We are so sorry to hear this. Please contact us via DM with your order ID so we can make this right.,,119
+121,115722,True,2017-10-31 11:40:00,@AmazonHelp not receiving 2FA verification codes to log into Amazon Prime Video on my TV.,122,
+122,AmazonHelp,False,2017-10-31 11:45:00,@115722 We are here to assist. Please ensure your registered mobile number is up to date or visit amazon.com/help.,,121
+123,115723,True,2017-10-31 11:50:00,@AmazonHelp credit card statement shows unexpected $79 charge from Amazon Digital Services.,124,
+124,AmazonHelp,False,2017-10-31 11:55:00,@115723 You can review all digital subscriptions and charges at amazon.com/yourmembershipsandsubscriptions.,,123
+125,115724,True,2017-10-31 12:00:00,@AmazonHelp received a completely different book than what I ordered. I ordered Python Crash Course and got a novel.,126,
+126,AmazonHelp,False,2017-10-31 12:05:00,@115724 That certainly should not happen! Please head to Your Orders to start a free wrong-item replacement.,,125
+127,115725,True,2017-10-31 12:10:00,@AmazonHelp what time does Amazon Locker pickup close near downtown Seattle?,128,
+128,AmazonHelp,False,2017-10-31 12:15:00,@115725 Locker access hours depend on the host location operating hours. You can view the hours in your delivery email.,,127

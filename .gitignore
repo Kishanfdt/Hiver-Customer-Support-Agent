@@ -1,0 +1,28 @@
+# Python environment and bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+
+# Environment secrets
+.env
+*.env.local
+
+# Build, test, and cache artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+dist/
+build/
+*.egg-info/
+
+# Outputs and logs
+outputs/
+*.log
+
+# Data files: exclude raw downloads/dumps, but explicitly keep committed project datasets
+data/*
+!data/amazonhelp_raw.csv
+!data/intent_exploration_notes.md
