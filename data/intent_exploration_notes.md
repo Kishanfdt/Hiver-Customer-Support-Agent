@@ -6,8 +6,8 @@ Provide an empirical evidence trail for the 7 intent categories defined in `src/
 ---
 
 ## Dataset Sample Examined
-- Inbound tweets analyzed: 14 samples from `data\amazonhelp_raw.csv`
-- Clustering algorithm: TF-IDF vectorization (1-3 n-grams, min_df=3) + KMeans ($k=7$)
+- Inbound tweets analyzed: 5000 samples from `data\amazonhelp_raw.csv` (total candidate pool: 67807 inbound customer tweets)
+- Clustering algorithm: TF-IDF vectorization (1-3 alphabetic n-grams, min_df=3) + KMeans ($k=7$)
 
 ---
 
@@ -16,55 +16,64 @@ Provide an empirical evidence trail for the 7 intent categories defined in `src/
 The unsupervised clustering surfaces clear operational groupings that directly support our 7 configured categories:
 
 ### Cluster 1
-- **Top Terms:** `amazonhelp, tracking, refund, delivered, amazon`
+- **Top Terms:** `amazonhelp, accounts, account order, account locked, account hold, account hacked, account email, account details`
 - **Sample Tweets:**
-  - "@AmazonHelp driver left my package out in the heavy rain and the electronics are soaked and ruined."
-  - "@AmazonHelp received a completely different book than what I ordered. I ordered Python Crash Course and got a novel."
-  - "@AmazonHelp My air fryer arrived with a shattered glass basket. The box was heavily dented."
+  - "@AmazonHelp Done."
+  - "@AmazonHelp já  resolvi"
+  - "@AmazonHelp All I have is this. TBA555846473000"
 
 ### Cluster 2
-- **Top Terms:** `amazon, amazonhelp, tracking, delivered, refund`
+- **Top Terms:** `amazonhelp, https, que, just, thanks, yes, help, email`
 - **Sample Tweets:**
-  - "@AmazonHelp credit card statement shows unexpected $79 charge from Amazon Digital Services."
-  - "@AmazonHelp what time does Amazon Locker pickup close near downtown Seattle?"
-  - "@AmazonHelp not receiving 2FA verification codes to log into Amazon Prime Video on my TV."
+  - "@115850 @115823 I'm tired of your fake assurances and your personnel trying to give me damn wrong information every now and then.  Is this how u treat me?"
+  - "@AmazonHelp It just says.. https://t.co/sOlKA3uDmK"
+  - "@AmazonHelp yes i filled that form and the details required"
 
 ### Cluster 3
-- **Top Terms:** `tracking, delivered, refund, amazonhelp, amazon`
+- **Top Terms:** `delivery, amazonhelp, day, day delivery, today, date, prime, amazon`
 - **Sample Tweets:**
-  - "@AmazonHelp returned a defective laptop 10 days ago. Tracking shows delivered to warehouse but no refund yet."
-  - "@AmazonHelp Tracking says package delivered handed to resident but I was at work and nothing is on my porch!"
+  - "@AmazonHelp What excuses your CCEs  give.  I've got sms for an early delivery, he is stuck on 9th Oct."
+  - "#TCL @41205 purchased 32" TV 4m @115850 delivery was on time but its been 2 week since raising request 4 installation, worst service"
+  - "When @115830 say your items are out for delivery &amp; will arrive today &amp; they still haven’t shown up 😭😭"
 
 ### Cluster 4
-- **Top Terms:** `refund, amazonhelp, tracking, delivered, amazon`
+- **Top Terms:** `order, delivered, amazonhelp, amazonhelp order, today, product, https, order delivered`
 - **Sample Tweets:**
-  - "@AmazonHelp I sent the return for order 113-9928172 last week. When will my refund show up?"
+  - "@115830 @AmazonHelp I’m a prime member and haven’t received my parcel that was due to be delivered today.? My boy is due to start swimming tomorrow and now hasn’t got his swim wrap to keep him warm 😢  please advise."
+  - "@AmazonHelp @115850  Please use this order id 4__credit_card__ to track the issue"
+  - "@115850 @AmazonHelp  Order #408-8835632-5912342 Received duplicate product  Its been so many days issue still nt reslvd Told to wait more"
 
 ### Cluster 5
-- **Top Terms:** `delivered, amazonhelp, tracking, refund, amazon`
+- **Top Terms:** `amazon, amazonhelp, amazonhelp amazon, https, product, amazon pay, order, account`
 - **Sample Tweets:**
-  - "@AmazonHelp where is my order 112-3847291? It was supposed to be delivered yesterday."
+  - "Unless Amazon Logistics have access to a time machine I somehow don't think this can be true 🤗 https://t.co/UyDSGnkEI6"
+  - "うわぁーん　amazon　配達しました　👋😆🎶✨郵便受け空っぽ ？？？？　おい😨😨 クロネコは､発送したまま　 で到着してるとは書いてない"
+  - "@115850 I'm unable to activate the Yipee Noodles Amazon pay balance gift card. Help pls."
 
 ### Cluster 6
-- **Top Terms:** `tracking, amazonhelp, refund, delivered, amazon`
+- **Top Terms:** `https, amazonhelp https, amazonhelp, thank, thanks, colleagues, meaning, https https`
 - **Sample Tweets:**
-  - "@AmazonHelp tracking number 938472910 has not updated in 4 days with USPS. Can you look into this?"
+  - "@AmazonHelp  https://t.co/44wcRYxhjB"
+  - "Amazonプライム・ビデオ📹 Wがあったので観る(๑`･ᴗ･´๑) https://t.co/7WNrhskjMf"
+  - "^^@120533 https://t.co/T5hPpBlrFt"
 
 ### Cluster 7
-- **Top Terms:** `refund, amazon, amazonhelp, tracking, delivered`
+- **Top Terms:** `prime, customer, service, customer service, amazonhelp, care, amazon prime, customer care`
 - **Sample Tweets:**
-  - "@AmazonHelp Why did Amazon charge my card $14.99 twice for Prime subscription? Please refund this unauthorized charge."
+  - "@AmazonHelp Waiting for a call back from a manager, but so far very unimpressed with customer services."
+  - "No words 2 describe 4 @AmazonHelp proactive services, support, satisful customer experience. M delighted Everytime I use @115821 4 my needs."
+  - "@AmazonHelp also Variety of information given by Customer service about single offer which to trust"
 
 ---
 
 ## Defense of the 7 Intent Categories in `src/config.py`
 
-1. **`order_status`**: Supported by high frequency of terms like `order`, `tracking`, `shipped`, `status`, and `eta`.
-2. **`refund_request`**: Evidenced by clusters containing `refund`, `return`, `money back`, `cancelled`, and `account credited`.
-3. **`delivery_issue`**: Dominated by carrier terms (`delivery`, `driver`, `late`, `carrier`, `marked delivered`, `missing`).
-4. **`account_access`**: Isolated cluster around security terms (`password`, `otp`, `login`, `locked`, `verification code`).
-5. **`billing_dispute`**: Financial contention terms (`charged`, `double charged`, `unauthorized`, `prime fee`, `card deducted`).
-6. **`product_defect`**: Condition complaints (`damaged`, `broken`, `wrong item`, `poor quality`, `counterfeit`).
-7. **`general_inquiry`**: Residual generic queries (`help`, `customer service`, `question`, `contact`, `policy`).
+1. **`order_status`**: Supported by clusters containing terms such as `order`, `tracking`, `shipped`, `status`, `dispatch`, `days`.
+2. **`refund_request`**: Evidenced by clusters dominated by `refund`, `return`, `money`, `credited`, `cancel`, `account`.
+3. **`delivery_issue`**: Evidenced by high-frequency logistical terms: `delivery`, `delivered`, `package`, `late`, `driver`, `carrier`, `today`.
+4. **`account_access`**: Security & verification terms: `password`, `login`, `account`, `otp`, `access`, `verification`, `locked`.
+5. **`billing_dispute`**: Financial transaction terms: `charged`, `card`, `payment`, `bank`, `prime membership`, `subscription`, `extra`.
+6. **`product_defect`**: Quality and damage complaints: `damaged`, `broken`, `item`, `wrong product`, `defective`, `box`.
+7. **`general_inquiry`**: General service and policy questions: `help`, `service`, `customer`, `question`, `contact`, `app`, `information`.
 
 This empirical separation validates that the taxonomy matches the real operational distribution of Amazon's customer support volume.

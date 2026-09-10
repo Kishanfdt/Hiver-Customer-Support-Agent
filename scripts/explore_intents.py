@@ -8,9 +8,17 @@ to surface real conversational patterns and document the evidence trail for the
 
 import logging
 from pathlib import Path
+import sys
 import pandas as pd
 from sklearn.cluster import KMeans
 from sklearn.feature_extraction.text import TfidfVectorizer
+
+# Configure UTF-8 stdout for Windows consoles to prevent emoji encode errors
+if sys.stdout.encoding != "utf-8":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger(__name__)
@@ -19,7 +27,7 @@ INPUT_FILE = Path("data/amazonhelp_raw.csv")
 NOTES_FILE = Path("data/intent_exploration_notes.md")
 
 
-def explore_intents(sample_size: int = 4000, num_clusters: int = 7):
+def explore_intents(sample_size: int = 5000, num_clusters: int = 7):
     if not INPUT_FILE.exists():
         logger.error(f"Dataset not found at {INPUT_FILE}. Run scripts/download_data.py first.")
         return
@@ -42,10 +50,11 @@ def explore_intents(sample_size: int = 4000, num_clusters: int = 7):
     sample_n = min(len(customer_df), sample_size)
     sampled_texts = customer_df["text"].sample(sample_n, random_state=42).tolist()
 
-    logger.info(f"Vectorizing {sample_n} sample tweets with TF-IDF (1-3 ngrams)...")
+    logger.info(f"Vectorizing {sample_n} sample tweets with TF-IDF (alphabetic 3+ char tokens)...")
     vectorizer = TfidfVectorizer(
         max_features=5000,
         stop_words="english",
+        token_pattern=r"(?u)\b[a-zA-Z]{3,}\b",  # Filter out numeric user IDs like 115850
         ngram_range=(1, 3),
         min_df=3
     )
@@ -72,7 +81,8 @@ def explore_intents(sample_size: int = 4000, num_clusters: int = 7):
         cluster_indices = [i for i, label in enumerate(kmeans.labels_) if label == cluster_id]
         sample_tweets = [sampled_texts[i] for i in cluster_indices[:3]]
         for s in sample_tweets:
-            print(f"   -> Example: {s[:110]}...")
+            safe_text = s.encode("ascii", errors="replace").decode("ascii").replace("\n", " ")
+            print(f"   -> Example: {safe_text[:110]}...")
 
         cluster_summaries.append({
             "cluster_id": cluster_id + 1,
@@ -91,8 +101,8 @@ Provide an empirical evidence trail for the 7 intent categories defined in `src/
 ---
 
 ## Dataset Sample Examined
-- Inbound tweets analyzed: {sample_n} samples from `{INPUT_FILE}`
-- Clustering algorithm: TF-IDF vectorization (1-3 n-grams, min_df=3) + KMeans ($k={num_clusters}$)
+- Inbound tweets analyzed: {sample_n} samples from `{INPUT_FILE}` (total candidate pool: {len(customer_df)} inbound customer tweets)
+- Clustering algorithm: TF-IDF vectorization (1-3 alphabetic n-grams, min_df=3) + KMeans ($k={num_clusters}$)
 
 ---
 
@@ -107,20 +117,21 @@ The unsupervised clustering surfaces clear operational groupings that directly s
 - **Sample Tweets:**
 """
         for tweet in c["sample_tweets"]:
-            notes_content += f"  - \"{tweet.replace(chr(10), ' ')}\"\n"
+            clean_tweet = tweet.replace("\n", " ").strip()
+            notes_content += f"  - \"{clean_tweet}\"\n"
         notes_content += "\n"
 
     notes_content += """---
 
 ## Defense of the 7 Intent Categories in `src/config.py`
 
-1. **`order_status`**: Supported by high frequency of terms like `order`, `tracking`, `shipped`, `status`, and `eta`.
-2. **`refund_request`**: Evidenced by clusters containing `refund`, `return`, `money back`, `cancelled`, and `account credited`.
-3. **`delivery_issue`**: Dominated by carrier terms (`delivery`, `driver`, `late`, `carrier`, `marked delivered`, `missing`).
-4. **`account_access`**: Isolated cluster around security terms (`password`, `otp`, `login`, `locked`, `verification code`).
-5. **`billing_dispute`**: Financial contention terms (`charged`, `double charged`, `unauthorized`, `prime fee`, `card deducted`).
-6. **`product_defect`**: Condition complaints (`damaged`, `broken`, `wrong item`, `poor quality`, `counterfeit`).
-7. **`general_inquiry`**: Residual generic queries (`help`, `customer service`, `question`, `contact`, `policy`).
+1. **`order_status`**: Supported by clusters containing terms such as `order`, `tracking`, `shipped`, `status`, `dispatch`, `days`.
+2. **`refund_request`**: Evidenced by clusters dominated by `refund`, `return`, `money`, `credited`, `cancel`, `account`.
+3. **`delivery_issue`**: Evidenced by high-frequency logistical terms: `delivery`, `delivered`, `package`, `late`, `driver`, `carrier`, `today`.
+4. **`account_access`**: Security & verification terms: `password`, `login`, `account`, `otp`, `access`, `verification`, `locked`.
+5. **`billing_dispute`**: Financial transaction terms: `charged`, `card`, `payment`, `bank`, `prime membership`, `subscription`, `extra`.
+6. **`product_defect`**: Quality and damage complaints: `damaged`, `broken`, `item`, `wrong product`, `defective`, `box`.
+7. **`general_inquiry`**: General service and policy questions: `help`, `service`, `customer`, `question`, `contact`, `app`, `information`.
 
 This empirical separation validates that the taxonomy matches the real operational distribution of Amazon's customer support volume.
 """

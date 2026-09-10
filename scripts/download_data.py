@@ -3,13 +3,10 @@ scripts/download_data.py - One-time dataset download and filtering script.
 
 Downloads the ThoughtVector 'Customer Support on Twitter' dataset via kagglehub,
 filters rows associated with 'AmazonHelp' (both brand replies and inbound customer queries),
-and saves data/amazonhelp_raw.csv.
-
-Requires Kaggle API credentials (~/.kaggle/kaggle.json or KAGGLE_USERNAME / KAGGLE_KEY).
+and saves data/amazonhelp_raw.csv under the 50MB GitHub file limit.
 """
 
 import logging
-import os
 from pathlib import Path
 import pandas as pd
 
@@ -32,47 +29,41 @@ def download_and_filter():
     dataset_dir = kagglehub.dataset_download(TARGET_DATASET)
     logger.info(f"Dataset downloaded to path: {dataset_dir}")
 
-    # Locate CSV file (typically twcs.csv or twcs/twcs.csv)
+    # Locate main dataset CSV file by largest file size (twcs.csv, not sample.csv)
     dataset_path = Path(dataset_dir)
     csv_files = list(dataset_path.glob("**/*.csv"))
     if not csv_files:
         raise FileNotFoundError(f"No CSV files found in downloaded directory {dataset_dir}")
 
-    main_csv = csv_files[0]
-    logger.info(f"Loading main CSV from {main_csv}...")
+    main_csv = max(csv_files, key=lambda p: p.stat().st_size)
+    logger.info(f"Loading main CSV from {main_csv} (size: {main_csv.stat().st_size / (1024*1024):.2f} MB)...")
 
-    # Load with low_memory=False
     df = pd.read_csv(main_csv, low_memory=False)
     logger.info(f"Raw dataset shape: {df.shape}")
-    logger.info(f"Columns: {list(df.columns)}")
 
-    # Clean IDs as strings to preserve precision
+    # Clean IDs as strings and strip trailing .0 to ensure matching
     df["tweet_id"] = df["tweet_id"].fillna("").astype(str).str.replace(r"\.0$", "", regex=True)
     df["in_response_to_tweet_id"] = df["in_response_to_tweet_id"].fillna("").astype(str).str.replace(r"\.0$", "", regex=True)
     df["author_id"] = df["author_id"].fillna("").astype(str)
     df["text"] = df["text"].fillna("").astype(str)
 
     logger.info(f"Filtering rows for brand: {TARGET_BRAND}...")
-    # 1. Outbound replies authored by brand
     brand_outbound = df["author_id"].str.lower() == TARGET_BRAND.lower()
+    
+    # Sample up to 75,000 brand replies and match their parent inbound tweets
+    # to keep committed CSV file size under 30MB (well below GitHub's 50MB threshold)
+    replies_sample = df[brand_outbound].head(75000)
+    parent_ids_sample = set(replies_sample["in_response_to_tweet_id"].unique())
+    parent_ids_sample.discard("")
+    parent_ids_sample.discard("nan")
+    
+    parents_sample = df[df["tweet_id"].isin(parent_ids_sample)]
+    combined_df = pd.concat([parents_sample, replies_sample]).drop_duplicates(subset=["tweet_id"])
 
-    # 2. Inbound tweets that the brand replied to
-    brand_parent_ids = set(df[brand_outbound]["in_response_to_tweet_id"].unique())
-    brand_parent_ids.discard("")
-    brand_parent_ids.discard("nan")
-    is_parent_of_reply = df["tweet_id"].isin(brand_parent_ids)
-
-    # 3. Customer tweets explicitly mentioning the brand
-    is_brand_mention = df["text"].str.contains(f"@{TARGET_BRAND}", case=False, na=False)
-
-    filtered_mask = brand_outbound | is_parent_of_reply | is_brand_mention
-    brand_df = df[filtered_mask].copy()
-
-    logger.info(f"Filtered to {len(brand_df)} rows relevant to {TARGET_BRAND}.")
-    logger.info(f"Author breakdown:\n{brand_df['author_id'].value_counts().head(5)}")
+    logger.info(f"Filtered to {len(combined_df)} direct interaction rows ({len(parents_sample)} customer queries, {len(replies_sample)} brand replies).")
 
     OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
-    brand_df.to_csv(OUTPUT_FILE, index=False)
+    combined_df.to_csv(OUTPUT_FILE, index=False)
     logger.info(f"Saved filtered dataset to {OUTPUT_FILE} (size: {OUTPUT_FILE.stat().st_size / (1024*1024):.2f} MB)")
 
 
