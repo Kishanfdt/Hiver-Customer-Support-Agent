@@ -67,6 +67,7 @@ This repository includes full end-to-end pipelines, data exploration scripts, au
 | `src/reply_gen.py` | Anti-hallucination reply generator adhering strictly to Twitter's 280-character limit. |
 | `src/escalation.py` | Pure-Python deterministic decision logic with structured justification reasons. |
 | `src/pipeline.py` | End-to-end batch processing pipeline with CLI arguments. |
+| `app.py` | Streamlit interactive web UI (Single Query & Batch Eval modes). |
 | `eval/golden_set.csv` | Hand-labeled benchmark dataset structure for evaluation. |
 | `eval/golden_set_notes.md` | Sampling and annotation methodology documentation. |
 | `eval/baselines.py` | Implementation of Trivial (majority class) and Simple (keyword) baselines. |
@@ -91,30 +92,19 @@ The repository is pre-configured with a committed subset of `data/amazonhelp_raw
 ### 1. Environment Setup
 
 ```bash
-# Clone the repository
-git clone https://github.com/Kishanfdt/Hiver-Customer-Support-Agent.git
-cd Hiver-Customer-Support-Agent
-
-# Create and activate a virtual environment
 python -m venv .venv
-# On Windows:
-.\.venv\Scripts\activate
-# On Linux/macOS:
-# source .venv/bin/activate
+# Windows:
+.venv\Scripts\activate
+# Linux / macOS:
+source .venv/bin/activate
 
-# Install dependencies (uses the current google-genai SDK, not deprecated google-generativeai)
 pip install -r requirements.txt
 ```
 
-> [!NOTE]
-> We use the modern `google-genai` SDK (`pip install google-genai`). Do **not** use the deprecated `google-generativeai` package.
-
-### 2. Configure Google Gemini API Key (Optional for Live Mode)
-
-To run in live LLM mode, obtain a free API key from [Google AI Studio](https://aistudio.google.com/apikey):
+### 2. Configure Gemini API Key (Optional)
 
 ```bash
-# Windows PowerShell:
+# Windows (cmd/PowerShell):
 $env:GOOGLE_API_KEY="your-gemini-api-key"
 
 # Linux / macOS:
@@ -123,7 +113,17 @@ export GOOGLE_API_KEY="your-gemini-api-key"
 
 *If no key is provided, the system automatically falls back to deterministic offline stubs with zero errors and zero cost.*
 
-### 3. Run Offline Unit Tests
+### 3. Launch the Streamlit Web Application
+
+Run the interactive web interface:
+
+```bash
+streamlit run app.py
+```
+- **Single Query Mode:** Test any custom or sample customer tweet with real-time intent classification, precedent retrieval, draft reply, and escalation gate.
+- **Batch Eval Mode:** Run the complete 175-sample Golden Set evaluation and view the comparative baseline matrix and LLM judge ratings.
+
+### 4. Run Offline Unit Tests
 
 ```bash
 pytest tests/test_pipeline.py -v

@@ -124,14 +124,17 @@ def process_single_query(
     text: str,
     brand: str = config.BRAND,
     corpus_path: str = "data/amazonhelp_raw.csv",
-    api_key: Optional[str] = None
+    api_key: Optional[str] = None,
+    verbose: bool = True,
+    retriever: Optional[ResolutionRetriever] = None
 ) -> dict:
-    """Processes a single customer query and prints step-by-step pipeline results."""
-    logger.info(f"Loading resolution precedents from {corpus_path}...")
-    df_raw = load_raw(corpus_path)
-    pairs_df = build_brand_pairs(df_raw, brand=brand)
-    retriever = ResolutionRetriever()
-    retriever.fit(pairs_df)
+    """Processes a single customer query and returns the structured pipeline results."""
+    if retriever is None:
+        logger.info(f"Loading resolution precedents from {corpus_path}...")
+        df_raw = load_raw(corpus_path)
+        pairs_df = build_brand_pairs(df_raw, brand=brand)
+        retriever = ResolutionRetriever()
+        retriever.fit(pairs_df)
 
     logger.info(f"Initializing Gemini LLM client (Model: {config.CLASSIFIER_MODEL})...")
     llm_client = LLMClient(model=config.CLASSIFIER_MODEL, api_key=api_key)
@@ -165,18 +168,21 @@ def process_single_query(
         "draft_reply": reply,
     }
 
-    print("\n" + "=" * 80)
-    print("                 LIVE AGENT PIPELINE EXECUTION")
-    print("=" * 80)
-    print(f"Customer Query     : {result['customer_query']}")
-    print(f"Predicted Intent   : {result['predicted_intent']} (Confidence: {result['confidence']:.2f})")
-    print(f"Top Precedent Sim  : {result['top_retrieval_similarity']}")
-    print(f"Top Precedent Text : {result['top_precedent']}")
-    print(f"Decision Gate      : {result['escalation_decision'].upper()} ({result['escalation_reason']})")
-    print("-" * 80)
-    print(f"Draft Reply ({len(result['draft_reply'])} chars):\n{result['draft_reply']}")
-    print("=" * 80 + "\n")
+    if verbose:
+        print("\n" + "=" * 80)
+        print("                 LIVE AGENT PIPELINE EXECUTION")
+        print("=" * 80)
+        print(f"Customer Query     : {result['customer_query']}")
+        print(f"Predicted Intent   : {result['predicted_intent']} (Confidence: {result['confidence']:.2f})")
+        print(f"Top Precedent Sim  : {result['top_retrieval_similarity']}")
+        print(f"Top Precedent Text : {result['top_precedent']}")
+        print(f"Decision Gate      : {result['escalation_decision'].upper()} ({result['escalation_reason']})")
+        print("-" * 80)
+        print(f"Draft Reply ({len(result['draft_reply'])} chars):\n{result['draft_reply']}")
+        print("=" * 80 + "\n")
+
     return result
+
 
 
 def main():
