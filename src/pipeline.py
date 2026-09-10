@@ -120,21 +120,85 @@ def run(
     return results_df
 
 
+def process_single_query(
+    text: str,
+    brand: str = config.BRAND,
+    corpus_path: str = "data/amazonhelp_raw.csv",
+    api_key: Optional[str] = None
+) -> dict:
+    """Processes a single customer query and prints step-by-step pipeline results."""
+    logger.info(f"Loading resolution precedents from {corpus_path}...")
+    df_raw = load_raw(corpus_path)
+    pairs_df = build_brand_pairs(df_raw, brand=brand)
+    retriever = ResolutionRetriever()
+    retriever.fit(pairs_df)
+
+    logger.info(f"Initializing Gemini LLM client (Model: {config.CLASSIFIER_MODEL})...")
+    llm_client = LLMClient(model=config.CLASSIFIER_MODEL, api_key=api_key)
+    classifier = IntentClassifier(llm_client)
+    generator = ReplyGenerator(llm_client)
+
+    # 1. Intent Classification
+    clf = classifier.classify(text)
+    intent = clf["intent"]
+    confidence = clf["confidence"]
+
+    # 2. Retrieval
+    precedents = retriever.top_k(text, k=config.TOP_K_RETRIEVAL)
+    top_sim = precedents[0]["similarity"] if precedents else 0.0
+
+    # 3. Escalation Gate
+    gate = decide(intent=intent, confidence=confidence, top_similarity=top_sim)
+
+    # 4. Reply Drafting
+    reply = generator.generate(text, intent=intent, precedents=precedents)
+
+    result = {
+        "customer_query": text,
+        "predicted_intent": intent,
+        "confidence": confidence,
+        "top_retrieval_similarity": round(top_sim, 4),
+        "precedents_found": len(precedents),
+        "top_precedent": precedents[0]["resolution_text"] if precedents else "None",
+        "escalation_decision": gate["decision"],
+        "escalation_reason": gate["reason"],
+        "draft_reply": reply,
+    }
+
+    print("\n" + "=" * 80)
+    print("                 LIVE AGENT PIPELINE EXECUTION")
+    print("=" * 80)
+    print(f"Customer Query     : {result['customer_query']}")
+    print(f"Predicted Intent   : {result['predicted_intent']} (Confidence: {result['confidence']:.2f})")
+    print(f"Top Precedent Sim  : {result['top_retrieval_similarity']}")
+    print(f"Top Precedent Text : {result['top_precedent']}")
+    print(f"Decision Gate      : {result['escalation_decision'].upper()} ({result['escalation_reason']})")
+    print("-" * 80)
+    print(f"Draft Reply ({len(result['draft_reply'])} chars):\n{result['draft_reply']}")
+    print("=" * 80 + "\n")
+    return result
+
+
 def main():
     parser = argparse.ArgumentParser(description="Run Hiver Customer Support Agent Pipeline")
+    parser.add_argument("--query", "-q", type=str, default=None, help="Process a single customer query interactively")
     parser.add_argument("--input", "-i", type=str, default="data/amazonhelp_raw.csv", help="Path to input raw CSV")
     parser.add_argument("--brand", "-b", type=str, default=config.BRAND, help="Target brand name")
     parser.add_argument("--output", "-o", type=str, default="outputs/pipeline_output.csv", help="Path for results CSV")
     parser.add_argument("--max-rows", "-m", type=int, default=5000, help="Max rows to process (default: 5000)")
     args = parser.parse_args()
 
-    run(
-        input_path=args.input,
-        brand=args.brand,
-        out_path=args.output,
-        max_rows=args.max_rows
-    )
+    if args.query:
+        process_single_query(text=args.query, brand=args.brand, corpus_path=args.input)
+    else:
+        run(
+            input_path=args.input,
+            brand=args.brand,
+            out_path=args.output,
+            max_rows=args.max_rows
+        )
 
 
 if __name__ == "__main__":
     main()
+
